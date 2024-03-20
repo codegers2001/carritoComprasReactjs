@@ -1,8 +1,8 @@
-export default function Guitarra({ guitarra }) {
+export default function Guitarra({ guitarra, setCarrito }) {
   const { id, name, description, price, image } = guitarra;
 
-  const handleClick = () => {
-    console.log(`Agregando al carrito ${name}`);
+  const handleClick = (guitarra) => {
+    setCarrito((prevState) => [...prevState, guitarra]);
   };
 
   return (
