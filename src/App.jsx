@@ -8,6 +8,23 @@ function App() {
   const [data, setData] = useState(db);
   const [carrito, setCarrito] = useState([]);
 
+  function addCarrito(item) {
+    // verifica si el item ya está en el carrito
+    const existeItem = carrito.findIndex(guitarra => guitarra.id === item.id);
+    if (existeItem >= 0) {
+      // si el item ya está en el carrito, aumenta la cantidad
+      const updateCarrito = [...carrito];
+      // aumenta la cantidad del item
+      updateCarrito[existeItem].cantidad++;
+      // actualiza el estado
+      setCarrito(updateCarrito);
+    } else {
+      // si el item no está en el carrito, lo agrega
+      item.cantidad = 1;
+      setCarrito([...carrito, item]);
+    }
+  }
+
   return (
     <>
       <Header />
@@ -17,7 +34,12 @@ function App() {
 
         <div className="row mt-5">
           {data.map((guitarra) => (
-            <Guitarra key={guitarra.id} guitarra={guitarra} setCarrito={setCarrito} />
+            <Guitarra
+              key={guitarra.id}
+              guitarra={guitarra}
+              setCarrito={setCarrito}
+              addCarrito={addCarrito}
+            />
           ))}
         </div>
       </main>

@@ -1,9 +1,5 @@
-export default function Guitarra({ guitarra, setCarrito }) {
+export default function Guitarra({ guitarra, addCarrito }) {
   const { id, name, description, price, image } = guitarra;
-
-  const handleClick = (guitarra) => {
-    setCarrito((prevState) => [...prevState, guitarra]);
-  };
 
   return (
     <div className="col-md-6 col-lg-4 my-4 row align-items-center">
@@ -21,7 +17,7 @@ export default function Guitarra({ guitarra, setCarrito }) {
         <button
           type="button"
           className="btn btn-dark w-100"
-          onClick={() => handleClick(guitarra)}
+          onClick={() => addCarrito(guitarra)}
         >
           Agregar al Carrito
         </button>
