@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 export default function Guitarra({ guitarra, addCarrito }) {
+  // eslint-disable-next-line no-unused-vars
   const { id, name, description, price, image } = guitarra;
 
   return (
