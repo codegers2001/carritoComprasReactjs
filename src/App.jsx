@@ -65,6 +65,11 @@ function App() {
     setCarrito(nuevoCarrito);
   }
 
+  // function de vaciar carrito
+  function vaciarCarrito() {
+    setCarrito([]);
+  }
+
   return (
     <>
       <Header
@@ -72,6 +77,7 @@ function App() {
         eliminarGuitarra={eliminarGuitarra}
         incrementarCantidad={incrementarCantidad}
         decrementarCantidad={decrementarCantidad}
+        vaciarCarrito={vaciarCarrito}
       />
 
       <main className="container-xl mt-5">

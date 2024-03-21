@@ -5,6 +5,7 @@ export default function Header({
   eliminarGuitarra,
   incrementarCantidad,
   decrementarCantidad,
+  vaciarCarrito,
 }) {
   // iterar sobre el carrito para obtener el total
   const totalCarrito = () =>
@@ -94,7 +95,10 @@ export default function Header({
                     </p>
                   </>
                 )}
-                <button className="btn btn-dark w-100 mt-3 p-2">
+                <button
+                  className="btn btn-dark w-100 mt-3 p-2"
+                  onClick={vaciarCarrito}
+                >
                   Vaciar Carrito
                 </button>
               </div>
