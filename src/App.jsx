@@ -5,6 +5,7 @@ import Guitarra from "./components/Guitarra";
 import { db } from "./db/db";
 
 function App() {
+  // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState(db);
   const [carrito, setCarrito] = useState([]);
 
