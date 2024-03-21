@@ -16,6 +16,7 @@ function App() {
     // verifica si el item ya está en el carrito
     const existeItem = carrito.findIndex((guitarra) => guitarra.id === item.id);
     if (existeItem >= 0) {
+      if(carrito[existeItem].cantidad >= maxItems) return;
       // si el item ya está en el carrito, aumenta la cantidad
       const updateCarrito = [...carrito];
       // aumenta la cantidad del item
