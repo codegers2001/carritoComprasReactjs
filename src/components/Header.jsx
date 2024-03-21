@@ -4,6 +4,7 @@ export default function Header({
   carrito,
   eliminarGuitarra,
   incrementarCantidad,
+  decrementarCantidad,
 }) {
   // iterar sobre el carrito para obtener el total
   const totalCarrito = () =>
@@ -57,7 +58,11 @@ export default function Header({
                             <td>{guitarra.name}</td>
                             <td className="fw-bold">${guitarra.price}</td>
                             <td className="flex align-items-start gap-4">
-                              <button type="button" className="btn btn-dark">
+                              <button
+                                type="button"
+                                className="btn btn-dark"
+                                onClick={() => decrementarCantidad(guitarra.id)}
+                              >
                                 -
                               </button>
                               {guitarra.cantidad}

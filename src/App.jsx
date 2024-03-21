@@ -10,6 +10,7 @@ function App() {
   const [carrito, setCarrito] = useState([]);
 
   const maxItems = 5;
+  const minItems = 1;
 
   function addCarrito(item) {
     // verifica si el item ya está en el carrito
@@ -49,12 +50,27 @@ function App() {
     setCarrito(nuevoCarrito);
   }
 
+  // function de decrementar cantidad
+  function decrementarCantidad(id) {
+    const nuevoCarrito = carrito.map((item) => {
+      if (item.id === id && item.cantidad > minItems) {
+        return {
+          ...item,
+          cantidad: item.cantidad - 1,
+        };
+      }
+      return item;
+    });
+    setCarrito(nuevoCarrito);
+  }
+
   return (
     <>
       <Header
         carrito={carrito}
         eliminarGuitarra={eliminarGuitarra}
         incrementarCantidad={incrementarCantidad}
+        decrementarCantidad={decrementarCantidad}
       />
 
       <main className="container-xl mt-5">
