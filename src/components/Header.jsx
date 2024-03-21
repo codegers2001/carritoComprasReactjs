@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
 export default function Header({ carrito }) {
+  // iterar sobre el carrito para obtener el total
+  const totalCarrito = () => carrito.reduce((acc, item) => acc + (item.cantidad * item.price), 0);
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -26,50 +28,53 @@ export default function Header({ carrito }) {
                 {carrito.length === 0 ? (
                   <p className="text-center">El carrito esta vacio</p>
                 ) : (
-                  <table className="w-100 table">
-                    <thead>
-                      <tr>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {carrito.map((guitarra) => (
-                        <tr key={guitarra.id}>
-                          <td>
-                            <img
-                              className="img-fluid"
-                              src={`/img/${guitarra.image}.jpg`}
-                              alt={`imagen de la guitarra ${guitarra.name}`}
-                            />
-                          </td>
-                          <td>{guitarra.name}</td>
-                          <td className="fw-bold">${guitarra.price}</td>
-                          <td className="flex align-items-start gap-4">
-                            <button type="button" className="btn btn-dark">
-                              -
-                            </button>
-                            1
-                            <button type="button" className="btn btn-dark">
-                              +
-                            </button>
-                          </td>
-                          <td>
-                            <button className="btn btn-danger" type="button">
-                              X
-                            </button>
-                          </td>
+                  <>
+                    <table className="w-100 table">
+                      <thead>
+                        <tr>
+                          <th>Imagen</th>
+                          <th>Nombre</th>
+                          <th>Precio</th>
+                          <th>Cantidad</th>
+                          <th></th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {carrito.map((guitarra) => (
+                          <tr key={guitarra.id}>
+                            <td>
+                              <img
+                                className="img-fluid"
+                                src={`/img/${guitarra.image}.jpg`}
+                                alt={`imagen de la guitarra ${guitarra.name}`}
+                              />
+                            </td>
+                            <td>{guitarra.name}</td>
+                            <td className="fw-bold">${guitarra.price}</td>
+                            <td className="flex align-items-start gap-4">
+                              <button type="button" className="btn btn-dark">
+                                -
+                              </button>
+                              1
+                              <button type="button" className="btn btn-dark">
+                                +
+                              </button>
+                            </td>
+                            <td>
+                              <button className="btn btn-danger" type="button">
+                                X
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+
+                    <p className="text-end">
+                      Total pagar: <span className="fw-bold">${totalCarrito()}</span>
+                    </p>
+                  </>
                 )}
-                <p className="text-end">
-                  Total pagar: <span className="fw-bold">$899</span>
-                </p>
                 <button className="btn btn-dark w-100 mt-3 p-2">
                   Vaciar Carrito
                 </button>
