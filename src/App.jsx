@@ -9,9 +9,11 @@ function App() {
   const [data, setData] = useState(db);
   const [carrito, setCarrito] = useState([]);
 
+  const maxItems = 5;
+
   function addCarrito(item) {
     // verifica si el item ya está en el carrito
-    const existeItem = carrito.findIndex(guitarra => guitarra.id === item.id);
+    const existeItem = carrito.findIndex((guitarra) => guitarra.id === item.id);
     if (existeItem >= 0) {
       // si el item ya está en el carrito, aumenta la cantidad
       const updateCarrito = [...carrito];
@@ -28,12 +30,32 @@ function App() {
 
   // function eliminarGuitarra(id) {
   function eliminarGuitarra(id) {
-   setCarrito(prevCarrito => prevCarrito.filter(guitarra => guitarra.id !== id));
+    setCarrito((prevCarrito) =>
+      prevCarrito.filter((guitarra) => guitarra.id !== id)
+    );
+  }
+
+  // function de incrementar cantidad
+  function incrementarCantidad(id) {
+    const nuevoCarrito = carrito.map((item) => {
+      if (item.id === id && item.cantidad < maxItems) {
+        return {
+          ...item,
+          cantidad: item.cantidad + 1,
+        };
+      }
+      return item;
+    });
+    setCarrito(nuevoCarrito);
   }
 
   return (
     <>
-      <Header carrito={carrito} eliminarGuitarra={eliminarGuitarra} />
+      <Header
+        carrito={carrito}
+        eliminarGuitarra={eliminarGuitarra}
+        incrementarCantidad={incrementarCantidad}
+      />
 
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>

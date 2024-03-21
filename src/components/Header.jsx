@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
-export default function Header({ carrito, eliminarGuitarra }) {
+export default function Header({
+  carrito,
+  eliminarGuitarra,
+  incrementarCantidad,
+}) {
   // iterar sobre el carrito para obtener el total
-  const totalCarrito = () => carrito.reduce((acc, item) => acc + (item.cantidad * item.price), 0);
+  const totalCarrito = () =>
+    carrito.reduce((acc, item) => acc + item.cantidad * item.price, 0);
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -55,13 +60,21 @@ export default function Header({ carrito, eliminarGuitarra }) {
                               <button type="button" className="btn btn-dark">
                                 -
                               </button>
-                              1
-                              <button type="button" className="btn btn-dark">
+                              {guitarra.cantidad}
+                              <button
+                                type="button"
+                                className="btn btn-dark"
+                                onClick={() => incrementarCantidad(guitarra.id)}
+                              >
                                 +
                               </button>
                             </td>
                             <td>
-                              <button className="btn btn-danger" type="button" onClick={() => eliminarGuitarra(guitarra.id)}>
+                              <button
+                                className="btn btn-danger"
+                                type="button"
+                                onClick={() => eliminarGuitarra(guitarra.id)}
+                              >
                                 X
                               </button>
                             </td>
@@ -71,7 +84,8 @@ export default function Header({ carrito, eliminarGuitarra }) {
                     </table>
 
                     <p className="text-end">
-                      Total pagar: <span className="fw-bold">${totalCarrito()}</span>
+                      Total pagar:{" "}
+                      <span className="fw-bold">${totalCarrito()}</span>
                     </p>
                   </>
                 )}
