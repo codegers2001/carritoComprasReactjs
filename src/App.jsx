@@ -26,9 +26,14 @@ function App() {
     }
   }
 
+  // function eliminarGuitarra(id) {
+  function eliminarGuitarra(id) {
+   setCarrito(prevCarrito => prevCarrito.filter(guitarra => guitarra.id !== id));
+  }
+
   return (
     <>
-      <Header carrito={carrito} />
+      <Header carrito={carrito} eliminarGuitarra={eliminarGuitarra} />
 
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
-export default function Header({ carrito }) {
+export default function Header({ carrito, eliminarGuitarra }) {
   // iterar sobre el carrito para obtener el total
   const totalCarrito = () => carrito.reduce((acc, item) => acc + (item.cantidad * item.price), 0);
   return (
@@ -61,7 +61,7 @@ export default function Header({ carrito }) {
                               </button>
                             </td>
                             <td>
-                              <button className="btn btn-danger" type="button">
+                              <button className="btn btn-danger" type="button" onClick={() => eliminarGuitarra(guitarra.id)}>
                                 X
                               </button>
                             </td>
